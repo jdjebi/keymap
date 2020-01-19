@@ -1,0 +1,20 @@
+{% if title is defined %}
+	{% set page_title = main_title + " - " + title %}
+{% else %}
+	{% set page_title = title %}
+{% endif %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{{ page_title }}</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/materialize/css/materialize.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/main.css')}}">
+	{% include "KeyRooms/partials/_footer.html" %}
+</head>
+<body>
+	{% include "KeyRooms/partials/_nav.html" %}
+	{% block page_content %}
+	{% endblock %}
+</body>
+</html>                                     

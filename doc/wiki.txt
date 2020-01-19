@@ -1,0 +1,26 @@
+Terminal Keymap
+---------------
+Un terminal Keymap est simplement une classe qui réprésente une entité capable de communiquer avec un serveur keymap(KeyRemote).
+
+Keymap/kmap
+-----------
+Il s'agit de la structure qui réprésente l'etat des touches dans le terminal. Une touche enfoncée aura pour valeur 1 et zéro sinon. Les touches sont identifiée par un code qui peut-être un nom ou une valeur.
+
+KeyRemoteClient
+---------------
+C'est l'outil intégrée à un terminal Keymap qui assuer la communication entre le terminal et le serveur. Le client communique avec le serveur selon un protocol. Cela permet d'établir différentes approche pour communiquer avec le serveur
+
+KeyRemote
+---------
+C'est le serveur avec lequel un terminal communique. Son rôle est simple, réguler l'envoyes des actions à simuler et simuler les actions envoyées sur la plateforme sur laquelle il est installé. Il peut-être public signifit que l'accès au serveur est ouvert à tous ou privé signifit que l'accès au serveur se fait selon un protocole de sécurité. 
+
+Slot
+----
+Un slot est un canal par lequel un terminal envoye des actions au serveur. Il représente la connexion effective entre le serveur et le terminal et permet d'identifier facilement les différents terminaux.
+
+P2CB
+----
+C'est protocole de communication le plus simple. 
+P2CB: Protocole Public de Connexion Basique.
+Il permet de se connecter à un serveur simplement en envoyant une demande de connexion serveur qui lui repond
+en envoyant le slot que le terminal doit utiliser pour communiquer avec le serveur. Il fonctionne bien-sûr uniquement avec les serveurs public.

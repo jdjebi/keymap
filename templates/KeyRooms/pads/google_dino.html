@@ -1,0 +1,83 @@
+<!-- 
+-Gérer les appuis de touche
+-Gérer l'envoie de plusieurs touches 
+ -->
+<style type="text/css">
+.pad{
+	height: 80vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.kt-btn{
+	width: 100%;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #263238;
+    color: #fbc02d;
+    border-radius: 1em
+}
+
+.upper{
+	text-transform: uppercase;
+}
+
+.kt-btn:focus, .kt-btn:hover{
+	color :#f9b307;
+	box-shadow: inset 1px 3px 4px 5px #1a2327;
+}
+
+.m-1{
+	margin: 1em;
+}
+
+.m-2{
+	margin: 2em;
+}
+
+.m-3{
+	margin: 3em;
+}
+
+.m-4{
+	margin: 4em;
+}
+
+.m-5{
+	margin: 5em;
+}
+
+</style>
+<div class="pad m-3">
+	<div class="kt-btn-line">
+		<div class="kt-btn upper" data-kt-event='press' data-kt-link='/PCB/keytouch/special/SPACE'>Sauter</div>
+	</div>	
+</div>
+
+
+<script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/hammer.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+var btns = $('.kt-btn')
+
+function request(link){
+	fetch(link).then(function(response){
+		console.log(response)
+		if(response.status != 200){
+			console.log("Error detected.")
+		}
+	});
+}
+
+$(document).ready(function(){
+	btns.each(function(i){
+		$(this).on("click",function(e){
+			link = $(this).data("kt-link")
+			request(link)
+		})
+	});
+});
+</script>

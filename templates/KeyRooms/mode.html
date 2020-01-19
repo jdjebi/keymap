@@ -1,0 +1,43 @@
+{% set title = mode.name %}
+{% extends "KeyRooms/model/page.html" %}
+{% block page_content %}
+<style type="text/css">
+	.game-card{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		border: 1px solid rgb(223, 225, 229); 
+		color: rgb(0 158 214);
+		height:100px;
+	}
+	.game-card:hover{
+		background-color: #f2fbff;
+		cursor: pointer;
+	}
+</style>
+<div class="valign-center">
+	<div class="container">
+		<div class="row">
+			<div class="col s12 mb-5">
+				<h1 class="center-align">{{mode.name}}</h1>
+			</div>
+			<div class="col s12">
+				<div class="row">
+					{% for app in mode['apps'] %}
+					<div class="col s12 l3">
+						<a href="/{{mode.tag}}/{{app.tag}}">
+						<div class="game-card">
+							<div class="flow-text">
+								<span class="truncate">{{app.name}}</span>	
+							</div>
+						</div>
+						</a>
+					</div>
+					{% endfor %}	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock%}

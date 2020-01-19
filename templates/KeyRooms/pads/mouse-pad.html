@@ -1,0 +1,104 @@
+<!-- 
+-Gérer les appuis de touche
+-Gérer l'envoie de plusieurs touches 
+ -->
+<style type="text/css">
+.pad{
+	height: 80vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.kt-btn{
+	width: 100%;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #263238;
+    color: #fbc02d;
+    border-radius: 1em
+}
+
+.upper{
+	text-transform: uppercase;
+}
+
+.kt-btn:focus, .kt-btn:hover{
+	color :#f9b307;
+	box-shadow: inset 1px 3px 4px 5px #1a2327;
+}
+
+.m-1{
+	margin: 1em;
+}
+
+.m-2{
+	margin: 2em;
+}
+
+.m-3{
+	margin: 3em;
+}
+
+.m-4{
+	margin: 4em;
+}
+
+.m-5{
+	margin: 5em;
+}
+
+</style>
+
+<div>(x;y): (<span class="mouse-label-x"></span>; <span class="mouse-label-y"></span>)</div>
+<div>(dx;dy): (<span class="mouse-label-dx"></span>; <span class="mouse-label-dy"></span>)</div>
+
+<script type="text/javascript">
+mouse_url = "/PCB/mouse/move/"
+_x = 0
+_y = 0
+
+
+function request(url,data={}){
+
+	$.ajax({
+		url:url,
+		type:'POST',
+		data:data,
+		success:function(result,status,xhr){
+			console.log(status)
+		},
+		error:function(){
+			console.log("Error detected")
+		}
+	})
+
+}
+
+
+function set_coor(x,y,dx,dy){
+	$('.mouse-label-x').text(x);
+	$('.mouse-label-y').text(y);
+	$('.mouse-label-dx').text(dx);
+	$('.mouse-label-dy').text(dy);
+}
+
+$(document).ready(function(){
+	$(document).on("mousemove",function(e){
+		x = e.clientX
+		y = e.clientY
+
+		dx = x - _x
+		dy = y - _y
+
+		_x = e.clientX
+		_y = e.clientY
+
+		set_coor(x,y,dx,dy)
+
+		request(mouse_url,{dx: dx,dy: dy})
+	})
+});
+</script>

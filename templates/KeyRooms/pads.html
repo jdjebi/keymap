@@ -1,0 +1,6 @@
+{% set title = app.name %}
+{% extends "KeyRooms/model/page.html" %}
+{% block page_content %}
+	{% include "KeyRooms/pads/"+app.tag+".html" %}
+{% endblock %}
+

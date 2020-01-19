@@ -1,0 +1,7 @@
+-Fixer le nombre de connexion maximale au serveur
+-Le serveur n'autorise qu'une seule connexion venant de la même machine
+-Utiliser les variables de session pour controler l'authentification des terminaux
+-Règle une plateforme on un seul terminal
+-Gestion des accès
+-Gestion des tranfimission de touches(Cas de erreurs)
+-Mettre en place un procédure de reconnection lorsque le terminal est connecté à un slot sur le serveur mais que ce dernier est perdu id du slot

@@ -1,0 +1,54 @@
+<style type="text/css">
+.kkey{
+color:#fff;
+}
+
+.kroom{
+  color: #fbc02d 
+}  
+.brand-logo{
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.breadcrumb{
+  color: #000
+}
+</style>
+
+
+<nav class="blue-grey darken-4">
+  <div class="container">
+    <div class="nav-wrapper">
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="/" class="brand-logo"><span class="kkey">Key</span><span class="kroom">Rooms</span></a>
+
+      <ul class="right hide-on-med-and-down">
+        {% for mode in gl_data %}
+        <li><a href="/{{mode.tag}}">{{mode.name}}</a></li>
+        {% endfor %}  
+      </ul>
+    </div>  
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><div class="user-view">
+    <div class="background blue-grey darken-4"></div>
+      <a class="brand-logo" href="/"><span class="kroom">H</span><span class="kkey">UB</span></a>
+    </div>
+  </li>
+  {% for mode in gl_data %}
+  <li><a class="subheader" href="#!{{mode.tag}}"><i class="small material-icons">{{mode.ico}}</i>{{mode.name}}</a></li>
+  {% if mode.apps is not none %}
+  <ul id="d-{{mode.tag}}">
+  {% for app_tag in mode.apps %}
+  {% set app = mode.apps[app_tag] %}
+      <li><a href="/{{mode.tag}}/{{app.tag}}">{{app.name}}</a></li>
+  {% endfor %}
+  </ul>
+  {% endif %}
+  <li class="divider"></li>
+  {% endfor %}  
+</ul>
+

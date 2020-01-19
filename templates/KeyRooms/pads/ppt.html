@@ -1,0 +1,101 @@
+<!-- 
+-Gérer les appuis de touche
+-Gérer l'envoie de plusieurs touches 
+ -->
+<style type="text/css">
+.pad{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.kt-btn{
+	border:solid 1px #000;
+}
+
+.kt-pad{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.kt-btn-line{
+	display: flex;
+	justify-content: space-around;
+	margin-top: 20px;
+}
+
+.kt-btn{
+	width: 27%;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #263238;
+    color: #fbc02d;
+    border-radius: 1em
+}
+
+.kt-btn:focus, .kt-btn:hover{
+	color :#f9b307;
+	box-shadow: inset 1px 3px 4px 5Px #1a2327;
+}
+
+.material-icons{
+	font-size: 3em
+}
+</style>
+<div class="kt-pad mb-5">
+	<div class="kt-btn-line">
+		<div class="kt-btn" data-kt-event='press' data-kt-link="/PCB/keytouch/special/UP"><i class="material-icons">keyboard_arrow_up</i></div>	
+	</div>
+	<div class="kt-btn-line">
+		<div class="kt-btn" data-kt-event='press' data-kt-link="/PCB/keytouch/special/LEFT">
+			<div>
+				 <i class="material-icons">keyboard_arrow_left</i>
+			</div>
+		</div>
+		<div class="kt-btn" data-kt-event='press' data-kt-link="/PCB/keytouch/special/ENTER">
+			<div>
+				<i class="material-icons">mouse</i>	
+			</div>
+		</div>	
+		<div class="kt-btn" data-kt-event='press' data-kt-link="/PCB/keytouch/special/RIGHT">
+			<i class="material-icons">keyboard_arrow_right</i>	
+		</div>	
+	</div>
+	<div class="kt-btn-line" >
+		<div class="kt-btn" data-kt-event='press' data-kt-link="/PCB/keytouch/special/DOWN"><i class="material-icons">keyboard_arrow_down</i></div>	
+	</div>
+</div>
+<div class="container">
+	<div class="kt-btn-line">
+		<div class="kt-btn" data-kt-event='press' data-kt-link="/PCB/keytouch/special/F5">
+			<i class="material-icons">picture_in_picture</i>	
+		</div>
+		<div class="kt-btn" data-kt-event='press' data-kt-link="/PCB/keytouch/special/ESCAPE">
+			<i class="material-icons">close</i>	
+		</div>				
+	</div>
+</div>
+<script type="text/javascript">
+var btns = $('.kt-btn')
+
+function request(link){
+	fetch(link).then(function(response){
+		console.log(response)
+		if(response.status != 200){
+			console.log("Error detected.")
+		}
+	});
+}
+
+$(document).ready(function(){
+	btns.each(function(i){
+		$(this).on("click",function(e){
+			link = $(this).data("kt-link")
+			request(link)
+		})
+	});
+});
+</script>
